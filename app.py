@@ -16,10 +16,14 @@ class SentenceLength(Resource):
         
         sim = similarity([sentence1,sentence2])    
         rouge = rouge_score([sentence1],[sentence2])
+        len1 = len(sentence1)
+        len2 = len(sentence2)
 
         return {
             'similarity' : sim,
-            'rouge' : rouge
+            'rouge' : rouge,
+            'len1' : len1,
+            'len2' : len2
         }
 
 if __name__ == "__main__":
