@@ -5,6 +5,7 @@ from similarity import similarity
 from rouge import rouge_score
 from bleu import bleu_score
 from mauve import mauve_score
+from bertscore import bert_score
 from roberta import get_roberta_similarity
 
 ### Bert Model Loading
@@ -33,6 +34,7 @@ class SentenceLength(Resource):
         precision, recall, rouge, f1_score = rouge_score([sentence1], [sentence2])
         bleu = bleu_score([sentence1], [sentence2])
         mauve = mauve_score([sentence1], [sentence2])
+        bertscore = bert_score([sentence1], [sentence2])
         # roberta = get_roberta_similarity(sentence1, sentence2)
         len1 = len(sentence1)
         len2 = len(sentence2)
@@ -45,6 +47,7 @@ class SentenceLength(Resource):
             'rouge_fscore':f1_score,
             'bleu':bleu,
             'mauve':mauve,
+            'bertscore_f1':bertscore,
             # 'roberta': roberta,
             'len1': len1,
             'len2': len2
