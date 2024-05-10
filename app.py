@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_restx import Api, Resource
+from flask_cors import CORS
 
 from similarity import similarity
 from rouge import rouge_score
@@ -20,6 +21,7 @@ model = BertModel.from_pretrained('bert-large-uncased')
 ###
 
 app = Flask(__name__)
+CORS(app)  # 모든 출처에서의 요청을 허용합니다.
 api = Api(app)
 
 
