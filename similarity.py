@@ -19,8 +19,8 @@ def similarity(sentences):
     with torch.no_grad():
         embeddings = model(**encodings)
 
-    embeddings_avg = embeddings[0].mean(axis=2)
-
-    return torch.cosine_similarity(embeddings_avg[0].reshape(1,-1), embeddings_avg[1].reshape(1,-1)).item()
+    embeddings_cls = embeddings.last_hidden_state[:, 0, :]
+    return torch.cosine_similarity(embeddings_cls[0].reshape(1,-1),
+                                   embeddings_cls[1].reshape(1,-1)).item()
 
 # print(similarity(['this is test sentence 1', 'random']))
