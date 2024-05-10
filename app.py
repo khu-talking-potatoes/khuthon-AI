@@ -29,8 +29,14 @@ api = Api(app)
 class SentenceLength(Resource):
     def post(self):
         # POST 요청에서 문장 두 개를 받음
-        sentence1 = request.form.get('sentence1', '')
-        sentence2 = request.form.get('sentence2', '')
+        data = request.get_json()  # POST 요청으로부터 JSON 데이터 가져오기
+        sentences = data.get('data', [])
+  
+        answer1 = sentences[0].get('answer', '')  # 모델의 답변
+        answer2 = sentences[1].get('answer', '')  # 모델의 답변
+
+        sentence1 = str(answer1)
+        sentence2 = str(answer2)
 
         sim = similarity([sentence1, sentence2], model, tokenizer)
         precision, recall, rouge, f1_score = rouge_score([sentence1], [sentence2])
