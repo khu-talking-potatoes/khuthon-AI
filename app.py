@@ -28,7 +28,7 @@ class SentenceLength(Resource):
         sentence2 = request.form.get('sentence2', '')
 
         sim = similarity([sentence1, sentence2], model, tokenizer)
-        precision, recall, rouge = rouge_score([sentence1], [sentence2])
+        precision, recall, rouge, f1_score = rouge_score([sentence1], [sentence2])
         # roberta = get_roberta_similarity(sentence1, sentence2)
         len1 = len(sentence1)
         len2 = len(sentence2)
@@ -38,6 +38,7 @@ class SentenceLength(Resource):
             'rouge': rouge,
             'rouge_precision':precision,
             'rouge_recall':recall,
+            'rouge_fscore':f1_score,
             # 'roberta': roberta,
             'len1': len1,
             'len2': len2
