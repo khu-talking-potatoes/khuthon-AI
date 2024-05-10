@@ -7,4 +7,7 @@ def rouge_score(predictions, references):
     #references = ["hello there", "general kenobi"]
     
     results = rouge.compute(predictions=predictions, references=references)
-    return results
+    precision = results['rouge1'].precision
+    recall = results['rouge1'].recall
+    
+    return precision, recall, results
