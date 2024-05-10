@@ -23,4 +23,4 @@ def similarity(sentences):
 
     return torch.cosine_similarity(embeddings_avg[0].reshape(1,-1), embeddings_avg[1].reshape(1,-1)).item()
 
-print(similarity(['this is test sentence 1', 'random']))
+# print(similarity(['this is test sentence 1', 'random']))
