@@ -4,4 +4,7 @@
     - BERT
     - RoBERTa
     - ROUGE
+    - BLEU
+    - MAUVE
+    - BERTSCORE
 - 로컬 환경에서 구동할 경우 "http://localhost/sentence_length" 로 테스트해볼 수 있다.
