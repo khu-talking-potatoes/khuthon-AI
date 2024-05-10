@@ -3,7 +3,7 @@ import torch
 from torch.nn import functional as F
 
 def get_roberta_similarity(text1, text2):
-    model_name='roberta-base'
+    model_name='roberta-large'
     aggregate="mean"
     tokenizer = RobertaTokenizer.from_pretrained(model_name)
     model = RobertaModel.from_pretrained(model_name)
