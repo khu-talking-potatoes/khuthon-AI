@@ -6,10 +6,16 @@ elif torch.cuda.is_available(): device = torch.device("cuda")
 else: device = torch.device("cpu")
 
 
-def similarity(sentences):
+def similarity(sentences, model=None, tokenizer=None):
     bertVersion = 'bert-large-uncased'
-    tokenizer = BertTokenizer.from_pretrained(bertVersion)
-    model = BertModel.from_pretrained(bertVersion)
+    if tokenizer is None:
+        tokenizer = BertTokenizer.from_pretrained(bertVersion)
+    else:
+        tokenizer = tokenizer
+    if model is None:
+        model = BertModel.from_pretrained(bertVersion)
+    else:
+        model = model
 
     encodings = tokenizer(sentences, return_tensors='pt', padding=True)
     encodings = encodings.to(device)
