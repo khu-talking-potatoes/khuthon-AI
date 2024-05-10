@@ -20,4 +20,4 @@ def get_roberta_similarity(text1, text2):
 
     similarity = F.cosine_similarity(embeddings[0], embeddings[1], dim=0)
 
-    return similarity.itme()
+    return similarity.item()
