@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_restx import Api, Resource
 
 from similarity import similarity
+from rouge import rouge_score
 
 app = Flask(__name__)
 api = Api(app)
@@ -14,10 +15,11 @@ class SentenceLength(Resource):
         sentence2 = request.form.get('sentence2', '')
         
         sim = similarity([sentence1,sentence2])    
-        
-        # 길이 반환
+        rouge = rouge_score([sentence1],[sentence2])
+
         return {
-            'similarity' : sim
+            'similarity' : sim,
+            'rouge' : rouge
         }
 
 if __name__ == "__main__":
