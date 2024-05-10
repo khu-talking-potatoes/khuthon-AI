@@ -3,6 +3,7 @@ from flask_restx import Api, Resource
 
 from similarity import similarity
 from rouge import rouge_score
+from roberta import get_roberta_similarity
 
 app = Flask(__name__)
 api = Api(app)
@@ -16,12 +17,14 @@ class SentenceLength(Resource):
         
         sim = similarity([sentence1,sentence2])    
         rouge = rouge_score([sentence1],[sentence2])
+        roberta = get_roberta_similarity(sentence1,sentence2)
         len1 = len(sentence1)
         len2 = len(sentence2)
 
         return {
             'similarity' : sim,
             'rouge' : rouge,
+            'roberta' : roberta,
             'len1' : len1,
             'len2' : len2
         }
